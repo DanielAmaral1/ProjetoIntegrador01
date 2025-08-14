@@ -1,56 +1,34 @@
 package app.entity;
 
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Cliente {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message = "O campo nome é obrigatório")
     private String nome;
-    private String Cpf;
-    private Integer Idade;
 
-    public Cliente(Long id, String nome, String cpf, Integer idade) {
-        this.id = id;
+    @NotBlank(message = "O campo CPF é obrigatório")
+    private String cpf;
+
+    @NotNull(message = "O campo idade é obrigatório")
+    private Integer idade;
+
+    public Cliente() {}
+
+    public Cliente(String nome, String cpf, Integer idade) {
         this.nome = nome;
-        Cpf = cpf;
-        Idade = idade;
-    }
-    public Cliente() {
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return Cpf;
-    }
-
-    public void setCpf(String cpf) {
-        Cpf = cpf;
-    }
-
-    public Integer getIdade() {
-        return Idade;
-    }
-
-    public void setIdade(Integer idade) {
-        Idade = idade;
+        this.cpf = cpf;
+        this.idade = idade;
     }
 }

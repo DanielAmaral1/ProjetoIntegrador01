@@ -1,46 +1,40 @@
 package app.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.math.BigDecimal;
 
 @Entity
+@Getter
+@Setter
 public class Servico {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "O campo nome é obrigatório")
     private String nome;
-    private String telefone;
 
-    public Servico(Long id, String nome, String telefone) {
-        this.id = id;
+    @NotBlank(message = "O campo descrição é obrigatório")
+    private String descricao;
+
+    @NotNull(message = "O campo preço é obrigatório")
+    private BigDecimal preco;
+
+    @NotNull(message = "O campo duração é obrigatório")
+    private Integer duracaoMinutos;
+
+    public Servico() {}
+
+    public Servico(String nome, String descricao, BigDecimal preco, Integer duracaoMinutos) {
         this.nome = nome;
-        this.telefone = telefone;
-    }
-
-    public Servico() {
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    public String getNome() {
-        return nome;
-    }
-
-    public void setTelefone(String telefone) {
-    this.telefone = telefone;
-    }
-    public String getTelefone() {
-        return telefone;
-    }
-
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.duracaoMinutos = duracaoMinutos;
     }
 }
