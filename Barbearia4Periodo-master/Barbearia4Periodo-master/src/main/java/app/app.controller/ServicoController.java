@@ -1,7 +1,7 @@
-package app.controller;
+package app.app.controller;
 
-import app.entity.Servico;
-import app.service.ServicoService;
+import app.app.entity.Servico;
+import app.app.service.ServicoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

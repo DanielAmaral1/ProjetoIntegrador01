@@ -1,7 +1,7 @@
-package app.service;
+package app.app.service;
 
-import app.entity.Cliente;
-import app.repository.ClienteRepository;
+import app.app.entity.Cliente;
+import app.app.repository.ClienteRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

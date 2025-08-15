@@ -1,7 +1,7 @@
-package app.controller;
+package app.app.controller;
 
-import app.entity.Produto;
-import app.service.ProdutoService;
+import app.app.entity.Produto;
+import app.app.service.ProdutoService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

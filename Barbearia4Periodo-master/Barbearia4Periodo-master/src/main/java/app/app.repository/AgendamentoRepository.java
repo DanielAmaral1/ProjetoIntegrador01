@@ -1,7 +1,7 @@
-package app.repository;
+package app.app.repository;
 
-import app.entity.Agendamento;
-import app.entity.Cliente;
+import app.app.entity.Agendamento;
+import app.app.entity.Cliente;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

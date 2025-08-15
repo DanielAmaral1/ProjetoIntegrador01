@@ -1,6 +1,6 @@
-package app.repository;
+package app.app.repository;
 
-import app.entity.Produto;
+import app.app.entity.Produto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -13,8 +13,8 @@ import java.util.List;
 public interface ProdutoRepository extends JpaRepository<Produto, Long> {
 
     // Métodos automáticos (mínimo 2 por repository)
-    List<Produto> buscarPorNomeContendo(String nome);
-    List<Produto> buscarPorPrecoMenorOuIgual(BigDecimal preco);
+    List<Produto> findByNomeContaining(String nome);
+    List<Produto> findByPrecoLessThanEqual(BigDecimal preco);
 
     // Consulta personalizada com JPQL (pelo menos 1 na aplicação)
     @Query("SELECT p FROM Produto p WHERE p.quantidadeEstoque < :quantidade")

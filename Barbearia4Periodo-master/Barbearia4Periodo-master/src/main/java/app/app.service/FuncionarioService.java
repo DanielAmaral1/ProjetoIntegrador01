@@ -1,7 +1,7 @@
-package app.service;
+package app.app.service;
 
-import app.entity.Funcionario;
-import app.repository.FuncionarioRepository;
+import app.app.entity.Funcionario;
+import app.app.repository.FuncionarioRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

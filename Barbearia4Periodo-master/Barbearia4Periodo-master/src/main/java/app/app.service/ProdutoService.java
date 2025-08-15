@@ -1,7 +1,7 @@
-package app.service;
+package app.app.service;
 
-import app.entity.Produto;
-import app.repository.ProdutoRepository;
+import app.app.entity.Produto;
+import app.app.repository.ProdutoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -55,7 +55,7 @@ public class ProdutoService {
     }
 
     public List<Produto> buscarPorNome(String nome) {
-        return produtoRepository.buscarPorNomeContendo(nome);
+        return produtoRepository.findByNomeContaining(nome);
     }
 
     public List<Produto> buscarProdutosComEstoqueBaixo(Integer quantidade) {

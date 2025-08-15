@@ -1,7 +1,7 @@
-package app.controller;
+package app.app.controller;
 
-import app.entity.Agendamento;
-import app.service.FuncionarioService;
+import app.app.entity.Agendamento;
+import app.app.service.AgendamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +14,7 @@ import java.util.List;
 public class AgendamentoController {
 
     @Autowired
-    private FuncionarioService agendamentoService;
+    private AgendamentoService agendamentoService;
 
     // MÉTODO POST - Criar Agendamento
     @PostMapping

@@ -1,6 +1,6 @@
-package app.repository;
+package app.app.repository;
 
-import app.entity.Funcionario;
+import app.app.entity.Funcionario;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

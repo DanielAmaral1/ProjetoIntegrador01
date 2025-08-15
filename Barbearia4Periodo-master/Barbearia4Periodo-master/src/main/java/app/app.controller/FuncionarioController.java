@@ -1,7 +1,7 @@
-package app.controller;
+package app.app.controller;
 
-import app.entity.Funcionario;
-import app.repository.FuncionarioRepository;
+import app.app.entity.Funcionario;
+import app.app.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

@@ -1,7 +1,7 @@
-package app.service;
+package app.app.service;
 
-import app.entity.Agendamento;
-import app.repository.AgendamentoRepository;
+import app.app.entity.Agendamento;
+import app.app.repository.AgendamentoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,20 +30,21 @@ public class AgendamentoService {
 
     public Agendamento findById(Long id) {
         return agendamentoRepository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("Livro not found with id: " + id));
+                .orElseThrow(() -> new EntityNotFoundException("Agendamento not found with id: " + id));
     }
 
 
     // Update
-public Agendamento update(Long id, Agendamento livroDetails) {
-    Agendamento agendamento = findById(id);
-    agendamento.setISSN(livroDetails.getISSN());
-    agendamento.setTitulo(livroDetails.getTitulo());
-    agendamento.setSinopse(livroDetails.getSinopse());
-    agendamento.setAno(livroDetails.getAno());
-    agendamento.setQtdPaginas(livroDetails.getQtdPaginas());
-    return agendamentoRepository.save(agendamento);
-}
+    public Agendamento update(Long id, Agendamento agendamentoDetails) {
+        Agendamento agendamento = findById(id);
+        agendamento.setDataHora(agendamentoDetails.getDataHora());
+        agendamento.setObservacoes(agendamentoDetails.getObservacoes());
+        agendamento.setCliente(agendamentoDetails.getCliente());
+        agendamento.setFuncionario(agendamentoDetails.getFuncionario());
+        agendamento.setServico(agendamentoDetails.getServico());
+        agendamento.setProdutos(agendamentoDetails.getProdutos());
+        return agendamentoRepository.save(agendamento);
+    }
 
 
     // Delete

@@ -1,7 +1,7 @@
-package app.service;
+package app.app.service;
 
-import app.entity.Servico;
-import app.repository.ServicoRepository;
+import app.app.entity.Servico;
+import app.app.repository.ServicoRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +37,9 @@ public class ServicoService {
     public Servico update(Long id, Servico servicoDetails) {
         Servico servico = findById(id);
         servico.setNome(servicoDetails.getNome());
-        servico.setTelefone(servicoDetails.getTelefone());
+        servico.setDescricao(servicoDetails.getDescricao());
+        servico.setPreco(servicoDetails.getPreco());
+        servico.setDuracaoMinutos(servicoDetails.getDuracaoMinutos());
         return servicoRepository.save(servico);
     }
 

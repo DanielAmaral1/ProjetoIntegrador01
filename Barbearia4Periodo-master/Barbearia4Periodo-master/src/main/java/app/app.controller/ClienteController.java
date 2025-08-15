@@ -1,14 +1,12 @@
-package app.controller;
-
-
+package app.app.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import app.entity.Cliente;
-import app.service.ClienteService;
+import app.app.entity.Cliente;
+import app.app.service.ClienteService;
 
 import java.util.List;
 
@@ -23,7 +21,7 @@ public class ClienteController {
     //METODO POST
     @PostMapping
     public ResponseEntity<Cliente> createCliente(@RequestBody Cliente cliente) {
-        Cliente savedCliente = ClienteService.save(cliente);
+        Cliente savedCliente = clienteService.save(cliente);
         return new ResponseEntity<>(savedCliente, HttpStatus.CREATED);
     }
     //METODO GET
