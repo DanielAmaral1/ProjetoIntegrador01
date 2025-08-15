@@ -1,73 +1,41 @@
 package app.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
 @Entity
-@JsonIgnoreProperties({"XXX"})
-//alterar o campo `XXX` para algum atributo que voce quer que nao seja retornado no POSTMAN (API)
+@Getter
+@Setter
 public class Cliente {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_cliente;
 
+    @NotBlank(message = "O campo nome é obrigatório")
     private String nome;
-    private String Cpf;
-    private Integer Idade;
 
-    // Relacionamento OneToMany com Agendamento
+    @NotBlank(message = "O campo CPF é obrigatório")
+    private String cpf;
+
+    @NotNull(message = "O campo idade é obrigatório")
+    private Integer idade;
+
     @OneToMany(mappedBy = "cliente")
+    @JsonIgnoreProperties("cliente")
     private List<Agendamento> agendamentos;
 
-    public Cliente(Long id_cliente, String nome, String cpf, Integer idade) {
-        this.id_cliente = id_cliente;
+    public Cliente() {}
+
+    public Cliente(String nome, String cpf, Integer idade) {
         this.nome = nome;
-        Cpf = cpf;
-        Idade = idade;
-    }
-
-    public Cliente() {
-    }
-
-    // Getters e Setters
-    public Long getId_cliente() {
-        return id_cliente;
-    }
-
-    public void setId_cliente(Long id_cliente) {
-        this.id_cliente = id_cliente;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getCpf() {
-        return Cpf;
-    }
-
-    public void setCpf(String cpf) {
-        Cpf = cpf;
-    }
-
-    public Integer getIdade() {
-        return Idade;
-    }
-
-    public void setIdade(Integer idade) {
-        Idade = idade;
-    }
-
-    public List<Agendamento> getAgendamentos() {
-        return agendamentos;
-    }
-
-    public void setAgendamentos(List<Agendamento> agendamentos) {
-        this.agendamentos = agendamentos;
+        this.cpf = cpf;
+        this.idade = idade;
     }
 }
