@@ -35,8 +35,8 @@ public class Servico {
     @JsonIgnoreProperties("servicos")
     private List<Funcionario> funcionarios;
 
-    @ManyToMany(mappedBy = "servicos")
-    @JsonIgnoreProperties("servicos")
+    @OneToMany(mappedBy = "servico")
+    @JsonIgnoreProperties("servico")
     private List<Agendamento> agendamentos;
 
     public Servico() {}

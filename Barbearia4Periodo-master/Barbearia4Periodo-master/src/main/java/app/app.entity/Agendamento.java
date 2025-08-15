@@ -35,14 +35,20 @@ public class Agendamento {
     @JsonIgnoreProperties("agendamentos")
     private Funcionario funcionario;
 
+    @ManyToOne
+    @JoinColumn(name = "id_servico", nullable = false)
+    @NotNull(message = "O campo serviço é obrigatório")
+    @JsonIgnoreProperties("agendamentos")
+    private Servico servico;
+
     @ManyToMany
     @JoinTable(
-        name = "agendamento_servico",
+        name = "agendamento_produto",
         joinColumns = @JoinColumn(name = "id_agendamento"),
-        inverseJoinColumns = @JoinColumn(name = "id_servico")
+        inverseJoinColumns = @JoinColumn(name = "id_produto")
     )
     @JsonIgnoreProperties("agendamentos")
-    private List<Servico> servicos;
+    private List<Produto> produtos;
 
     public Agendamento() {}
 
