@@ -20,7 +20,12 @@ public class ClienteService {
     }
 
     //CREATE
-    public static Cliente save(Cliente cliente) {
+    public Cliente save(Cliente cliente) {
+        // Regra de negócio: modificar objeto antes de persistir
+        if (cliente.getCpf() != null) {
+            cliente.setCpf(cliente.getCpf().replaceAll("[^0-9]", "")); // Remove caracteres especiais
+        }
+        
         return clienteRepository.save(cliente);
     }
 
@@ -44,9 +49,16 @@ public class ClienteService {
 
     //DELETE
     public void deleteById(Long id) {
-        if (!clienteRepository.existsById(id)) {
-            throw new EntityNotFoundException("cliente not found with id: " + id);
+        Optional<Cliente> cliente = findById(id);
+        if (cliente.isEmpty()) {
+            throw new RuntimeException("Não é possível excluir cliente inexistente com id: " + id);
         }
+        
+        // Regra de negócio complexa com exception
+        if (!cliente.get().getAgendamentos().isEmpty()) {
+            throw new RuntimeException("Não é possível excluir cliente que possui agendamentos");
+        }
+        
         clienteRepository.deleteById(id);
     }
 
