@@ -41,8 +41,15 @@ public class FuncionarioService {
 
     public void delete(Long id) {
         if (!funcionarioRepository.existsById(id)) {
-            throw new EntityNotFoundException("Editora not found with id: " + id);
+            throw new EntityNotFoundException("Funcionario not found with id: " + id);
         }
         funcionarioRepository.deleteById(id);
     }
+
+    public List<Funcionario> buscarPorNome(String nome) {
+        return  funcionarioRepository.findByNomeContainingIgnoreCase(nome);
+    }
+
+    public List<Funcionario> buscarPorTelefone(String telefone){
+        return funcionarioRepository.findByTelefoneContaining(telefone);
 }

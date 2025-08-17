@@ -54,4 +54,10 @@ public class AgendamentoService {
         }
         agendamentoRepository.deleteById(id);
     }
+    public List<Agendamento> buscarPorCliente(Cliente cliente) {
+        return agendamentoRepository.findByCliente(cliente);
+    }
+    public List<Agendamento> buscarAgendamentosFuturos(LocalDateTime dataHoraAtual) {
+        return agendamentoRepository.findByDataHoraAfter(dataHoraAtual);
+    }
 }

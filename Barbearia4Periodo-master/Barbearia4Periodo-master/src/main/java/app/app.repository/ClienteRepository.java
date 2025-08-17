@@ -11,5 +11,7 @@ public interface ClienteRepository extends JpaRepository<Cliente, Long> {
 
     // Métodos automáticos (mínimo 2 por repository)
     List<Cliente> findByNomeContainingIgnoreCase(String nome);
+
+    //busca por idade maior ou igual
     List<Cliente> findByIdadeGreaterThanEqual(Integer idade);
 }

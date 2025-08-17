@@ -19,4 +19,7 @@ public interface ProdutoRepository extends JpaRepository<Produto, Long> {
     // Consulta personalizada com JPQL (pelo menos 1 na aplicação)
     @Query("SELECT p FROM Produto p WHERE p.quantidadeEstoque < :quantidade")
     List<Produto> buscarProdutosComEstoqueBaixo(@Param("quantidade") Integer quantidade);
+    @Query("SELECT p FROM Produto p WHERE p.nome LIKE CONCAT ('%', :nome, '%')")
+    List<Produto> buscarPorNome(@Param("nome")String nome);
+
 }

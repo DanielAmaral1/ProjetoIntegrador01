@@ -12,6 +12,8 @@ import java.util.List;
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Long> {
 
     // Métodos automáticos (mínimo 2 por repository)
+    //busca por cliente
     List<Agendamento> findByCliente(Cliente cliente);
-    List<Agendamento> findByDataHoraBetween(LocalDateTime inicio, LocalDateTime fim);
+    // busca agendamentos com data/hora maior que (depois de)
+    List<Agendamento> findByDataHoraAfter(LocalDateTime dataHora);
 }

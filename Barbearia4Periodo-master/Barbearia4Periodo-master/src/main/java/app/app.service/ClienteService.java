@@ -66,8 +66,14 @@ public class ClienteService {
         return clienteRepository.findById(id);
     }
 
+    public List<Cliente> buscarPorNome(String nome) {
+        return  clienteRepository.findByNomeContaining(nome);
+    }
 
+    public List<Cliente> buscarPorIdade(Integer idade){
+        return clienteRepository.findByIdadeGreaterThanEqual(idade);
 
+    }
 
 }
 

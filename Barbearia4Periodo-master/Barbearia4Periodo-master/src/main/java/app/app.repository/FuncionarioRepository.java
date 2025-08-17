@@ -12,4 +12,8 @@ public interface FuncionarioRepository extends JpaRepository<Funcionario, Long> 
     // - save() - Save a new Funcionario or update an existing one
     // - deleteById() - Delete a Funcionario by ID
     // - delete() - Delete a Funcionario entity
+
+    List<Funcionario> findByNomeContainingIgnoreCase(String nome);
+    List<Funcionario> findByTelefoneContaining(String telefone);
+
 }

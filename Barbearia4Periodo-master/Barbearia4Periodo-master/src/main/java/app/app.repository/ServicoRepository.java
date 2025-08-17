@@ -12,4 +12,12 @@ public interface ServicoRepository extends JpaRepository<Servico, Long> {
     // - save() - Save a new Servico or update an existing one
     // - deleteById() - Delete a Servico by ID
     // - delete() - Delete a Servico entity
+
+    //metodos de filtragem sem @Query
+    List<Servico> findByNomeIgnoreCaseContaining(String nome);
+    List<Servico> findByPrecoLessThanEqual(BigDecimal preco);
+
+    //query para buscar a quantidade de servico que a barbearia possui
+    @Query("SELECT COUNT(s) FROM Servico s ")
+    Long buscarQtdServico();
 }

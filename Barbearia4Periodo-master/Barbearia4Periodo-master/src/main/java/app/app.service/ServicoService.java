@@ -50,4 +50,9 @@ public class ServicoService {
         }
         servicoRepository.deleteById(id);
     }
+    public Long buscarQtdServico(){
+        return servicoRepository.buscarQtdServico();
+    }
+
+
 }
