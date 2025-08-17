@@ -1,50 +1,65 @@
 package app.app.controller;
 
 import app.app.entity.Funcionario;
-import app.app.repository.FuncionarioRepository;
+import app.app.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/Funcionarios")
+@RequestMapping("/funcionarios")
 public class FuncionarioController {
 
     @Autowired
-    private FuncionarioRepository repository;
+    private FuncionarioService funcionarioService;
 
     @GetMapping
-    public List<Funcionario> listarTodos() {
-        return repository.findAll();
+    public ResponseEntity<List<Funcionario>> listarTodos() {
+        return ResponseEntity.ok(funcionarioService.findAll());
     }
 
     @GetMapping("/{id}")
-    public Funcionario buscarPorId(@PathVariable Long id) {
-        return repository.findById(id).orElse(null);
+    public ResponseEntity<Funcionario> buscarPorId(@PathVariable Long id) {
+        return ResponseEntity.ok(funcionarioService.findById(id));
     }
 
     @PostMapping
-    public Funcionario adicionar(@RequestBody Funcionario funcionario) {
-        return repository.save(funcionario);
-    }
-
-    @DeleteMapping("/{id}")
-    public String remover(@PathVariable Long id) {
-        if (repository.existsById(id)) {
-            repository.deleteById(id);
-            return "Funcionario removida com sucesso";
-        }
-        return "Funcionario não encontrada";
+    public ResponseEntity<Funcionario> adicionar(@RequestBody Funcionario funcionario) {
+        Funcionario salvo = funcionarioService.save(funcionario);
+        return new ResponseEntity<>(salvo, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public Funcionario atualizar(@PathVariable Long id, @RequestBody Funcionario novaFuncionario) {
-        return repository.findById(id).map(funcionario -> {
-            funcionario.setNome(novaFuncionario.getNome());
-            funcionario.setTelefone(novaFuncionario.getTelefone());
-            funcionario.setEndereco(novaFuncionario.getEndereco());
-            return repository.save(funcionario);
-        }).orElse(null);
+    public ResponseEntity<Funcionario> atualizar(
+            @PathVariable Long id,
+            @RequestBody Funcionario novaFuncionario) {
+        return ResponseEntity.ok(funcionarioService.update(id, novaFuncionario));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> remover(@PathVariable Long id) {
+        funcionarioService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/by-nome")
+    public ResponseEntity<List<Funcionario>> buscarPorNome(@RequestParam String nome) {
+        return ResponseEntity.ok(funcionarioService.buscarPorNome(nome));
+    }
+
+
+    @GetMapping("/by-telefone")
+    public ResponseEntity<List<Funcionario>> buscarPorTelefone(@RequestParam String telefone) {
+        return ResponseEntity.ok(funcionarioService.buscarPorTelefone(telefone));
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Funcionario> atualizar(
+            @PathVariable Long id,
+            @RequestBody Funcionario novaFuncionario) {
+        return ResponseEntity.ok(funcionarioService.update(id, novaFuncionario));
     }
 }

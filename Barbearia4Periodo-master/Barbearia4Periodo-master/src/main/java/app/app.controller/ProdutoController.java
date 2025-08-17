@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @RestController
@@ -52,5 +53,10 @@ public class ProdutoController {
     @GetMapping("/estoque-baixo")
     public ResponseEntity<List<Produto>> buscarEstoqueBaixo(@RequestParam Integer quantidade) {
         return ResponseEntity.ok(produtoService.buscarProdutosComEstoqueBaixo(quantidade));
+    }
+
+    @GetMapping("/preco-ate")
+    public ResponseEntity<List<Produto>> buscarPorPrecoAte(@RequestParam BigDecimal preco) {
+        return ResponseEntity.ok(produtoService.buscarPorPrecoAte(preco));
     }
 }

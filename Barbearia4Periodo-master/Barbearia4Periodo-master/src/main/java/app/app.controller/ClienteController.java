@@ -1,49 +1,69 @@
 package app.app.controller;
 
+import app.app.entity.Cliente;
+import app.app.service.ClienteService;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import app.app.entity.Cliente;
-import app.app.service.ClienteService;
-
 import java.util.List;
 
-
 @RestController
-@RequestMapping("/cliente")
+@RequestMapping("/clientes")
 public class ClienteController {
 
     @Autowired
     private ClienteService clienteService;
 
-    //METODO POST
     @PostMapping
     public ResponseEntity<Cliente> createCliente(@RequestBody Cliente cliente) {
         Cliente savedCliente = clienteService.save(cliente);
         return new ResponseEntity<>(savedCliente, HttpStatus.CREATED);
     }
-    //METODO GET
+
     @GetMapping
     public ResponseEntity<List<Cliente>> getAllCliente() {
-        List<Cliente> cliente = clienteService.findAll();
-        return new ResponseEntity<>(cliente, HttpStatus.OK);
-    }
-    //METODO DELETE
-    @DeleteMapping("/delete/{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
-    clienteService.deleteById(id);
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        return ResponseEntity.ok(clienteService.findAll());
     }
 
-    //METODO UPDATE
-    @PutMapping("/update/{id}")
+    @GetMapping("/{id}")
+    public ResponseEntity<Cliente> findById(@PathVariable Long id) {
+        return clienteService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElseThrow(() -> new EntityNotFoundException("Cliente not found with id: " + id));
+    }
+
+    @PutMapping("/{id}")
     public ResponseEntity<Cliente> updateCliente(
             @PathVariable Long id,
             @RequestBody Cliente clienteDetails) {
-        return new ResponseEntity<>(clienteService.update(id, clienteDetails), HttpStatus.OK);
+        return ResponseEntity.ok(clienteService.update(id, clienteDetails));
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        clienteService.deleteById(id);
+        return ResponseEntity.noContent().build();
+    }
+
+
+    @GetMapping("/by-nome")
+    public ResponseEntity<List<Cliente>> buscarPorNome(@RequestParam String nome) {
+        return ResponseEntity.ok(clienteService.buscarPorNome(nome));
+    }
+
+    @GetMapping("/by-idade")
+    public ResponseEntity<List<Cliente>> buscarPorIdade(@RequestParam Integer idade) {
+        return ResponseEntity.ok(clienteService.buscarPorIdade(idade));
+    }
+   
+    @PutMapping("/{id}")
+    public ResponseEntity<Cliente> updateCliente(
+            @PathVariable Long id,
+            @RequestBody Cliente clienteDetails) {
+        return ResponseEntity.ok(clienteService.update(id, clienteDetails));
+    }
 
 }

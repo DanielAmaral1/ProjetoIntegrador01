@@ -42,6 +42,10 @@ public class ProdutoService {
         return save(produto);
     }
 
+    public List<Produto> buscarPorPrecoAte(BigDecimal preco) {
+        return produtoRepository.findByPrecoLessThanEqual(preco);
+    }
+
     public void deleteById(Long id) {
         // Regra de negócio complexa com exception
         Optional<Produto> produto = findById(id);

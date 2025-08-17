@@ -42,7 +42,15 @@ public class ServicoService {
         servico.setDuracaoMinutos(servicoDetails.getDuracaoMinutos());
         return servicoRepository.save(servico);
     }
+   
+    public List<Servico> buscarPorNome(String nome) {
+        return servicoRepository.findByNomeIgnoreCaseContaining(nome);
+    }
 
+    public List<Servico> buscarPorPrecoAte(java.math.BigDecimal preco) {
+        return servicoRepository.findByPrecoLessThanEqual(preco);
+    }
+    
     // Delete
     public void deleteById(Long id) {
         if (!servicoRepository.existsById(id)) {

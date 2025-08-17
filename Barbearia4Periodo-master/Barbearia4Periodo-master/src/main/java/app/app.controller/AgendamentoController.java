@@ -1,12 +1,15 @@
 package app.app.controller;
 
 import app.app.entity.Agendamento;
+import app.app.entity.Cliente;
 import app.app.service.AgendamentoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -28,6 +31,25 @@ public class AgendamentoController {
     public ResponseEntity<List<Agendamento>> getAllAgendamentos() {
         List<Agendamento> agendamentos = agendamentoService.findAll();
         return new ResponseEntity<>(agendamentos, HttpStatus.OK);
+    }
+
+    @GetMapping("/by-cliente/{clienteId}")
+    public ResponseEntity<List<Agendamento>> getByCliente(@PathVariable Long clienteId) {
+    
+        Cliente cliente = new Cliente();
+        cliente.setId(clienteId);
+        List<Agendamento> lista = agendamentoService.buscarPorCliente(cliente);
+        return ResponseEntity.ok(lista);
+    }
+
+
+    @GetMapping("/futuros")
+    public ResponseEntity<List<Agendamento>> getFuturos(
+            @RequestParam("dataHora")
+            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dataHora
+    ) {
+        List<Agendamento> lista = agendamentoService.buscarAgendamentosFuturos(dataHora);
+        return ResponseEntity.ok(lista);
     }
 
     // MÉTODO DELETE - Deletar Agendamento por ID
