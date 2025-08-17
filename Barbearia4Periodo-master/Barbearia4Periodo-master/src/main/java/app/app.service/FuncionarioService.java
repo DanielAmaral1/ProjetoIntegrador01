@@ -53,3 +53,4 @@ public class FuncionarioService {
     public List<Funcionario> buscarPorTelefone(String telefone){
         return funcionarioRepository.findByTelefoneContaining(telefone);
 }
+}

@@ -1,5 +1,8 @@
 package app.app.service;
 
+
+import java.time.LocalDateTime;
+import app.app.entity.Cliente;
 import app.app.entity.Agendamento;
 import app.app.repository.AgendamentoRepository;
 import jakarta.persistence.EntityNotFoundException;
