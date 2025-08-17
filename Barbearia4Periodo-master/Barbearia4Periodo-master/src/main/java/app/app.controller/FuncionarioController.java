@@ -56,10 +56,4 @@ public class FuncionarioController {
         return ResponseEntity.ok(funcionarioService.buscarPorTelefone(telefone));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Funcionario> atualizar(
-            @PathVariable Long id,
-            @RequestBody Funcionario novaFuncionario) {
-        return ResponseEntity.ok(funcionarioService.update(id, novaFuncionario));
-    }
 }

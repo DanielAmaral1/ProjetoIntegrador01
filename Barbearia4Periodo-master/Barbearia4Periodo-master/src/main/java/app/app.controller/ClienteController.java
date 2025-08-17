@@ -58,12 +58,5 @@ public class ClienteController {
     public ResponseEntity<List<Cliente>> buscarPorIdade(@RequestParam Integer idade) {
         return ResponseEntity.ok(clienteService.buscarPorIdade(idade));
     }
-   
-    @PutMapping("/{id}")
-    public ResponseEntity<Cliente> updateCliente(
-            @PathVariable Long id,
-            @RequestBody Cliente clienteDetails) {
-        return ResponseEntity.ok(clienteService.update(id, clienteDetails));
-    }
 
 }

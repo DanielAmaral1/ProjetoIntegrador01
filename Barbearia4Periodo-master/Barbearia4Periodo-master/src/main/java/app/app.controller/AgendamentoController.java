@@ -37,11 +37,10 @@ public class AgendamentoController {
     public ResponseEntity<List<Agendamento>> getByCliente(@PathVariable Long clienteId) {
     
         Cliente cliente = new Cliente();
-        cliente.setId(clienteId);
+        cliente.setId_cliente(clienteId);
         List<Agendamento> lista = agendamentoService.buscarPorCliente(cliente);
         return ResponseEntity.ok(lista);
     }
-
 
     @GetMapping("/futuros")
     public ResponseEntity<List<Agendamento>> getFuturos(
