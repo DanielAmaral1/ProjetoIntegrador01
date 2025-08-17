@@ -34,13 +34,4 @@ public class Produto {
     @ManyToMany(mappedBy = "produtos")
     @JsonIgnoreProperties("produtos")
     private List<Agendamento> agendamentos;
-
-    public Produto() {}
-
-    public Produto(String nome, String descricao, BigDecimal preco, Integer quantidadeEstoque) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.preco = preco;
-        this.quantidadeEstoque = quantidadeEstoque;
-    }
 }

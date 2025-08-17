@@ -32,18 +32,10 @@ public class Funcionario {
 
     @ManyToMany
     @JoinTable(
-        name = "funcionario_servico",
-        joinColumns = @JoinColumn(name = "id_funcionario"),
-        inverseJoinColumns = @JoinColumn(name = "id_servico")
+            name = "funcionario_servico",
+            joinColumns = @JoinColumn(name = "id_funcionario"),
+            inverseJoinColumns = @JoinColumn(name = "id_servico")
     )
     @JsonIgnoreProperties("funcionarios")
     private List<Servico> servicos;
-
-    public Funcionario() {}
-
-    public Funcionario(String nome, String telefone, String endereco) {
-        this.nome = nome;
-        this.telefone = telefone;
-        this.endereco = endereco;
-    }
 }

@@ -43,18 +43,10 @@ public class Agendamento {
 
     @ManyToMany
     @JoinTable(
-        name = "agendamento_produto",
-        joinColumns = @JoinColumn(name = "id_agendamento"),
-        inverseJoinColumns = @JoinColumn(name = "id_produto")
+            name = "agendamento_produto",
+            joinColumns = @JoinColumn(name = "id_agendamento"),
+            inverseJoinColumns = @JoinColumn(name = "id_produto")
     )
     @JsonIgnoreProperties("agendamentos")
     private List<Produto> produtos;
-
-    public Agendamento() {}
-
-    public Agendamento(LocalDateTime dataHora, Cliente cliente, Funcionario funcionario) {
-        this.dataHora = dataHora;
-        this.cliente = cliente;
-        this.funcionario = funcionario;
-    }
 }

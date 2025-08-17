@@ -38,13 +38,4 @@ public class Servico {
     @OneToMany(mappedBy = "servico")
     @JsonIgnoreProperties("servico")
     private List<Agendamento> agendamentos;
-
-    public Servico() {}
-
-    public Servico(String nome, String descricao, BigDecimal preco, Integer duracaoMinutos) {
-        this.nome = nome;
-        this.descricao = descricao;
-        this.preco = preco;
-        this.duracaoMinutos = duracaoMinutos;
-    }
 }
