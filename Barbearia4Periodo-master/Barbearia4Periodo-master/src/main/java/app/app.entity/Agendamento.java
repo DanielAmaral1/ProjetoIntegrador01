@@ -14,6 +14,7 @@ import java.util.List;
 @Setter
 public class Agendamento {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_agendamento;

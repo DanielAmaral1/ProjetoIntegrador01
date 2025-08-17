@@ -35,3 +35,4 @@ public class Produto {
     @JsonIgnoreProperties("produtos")
     private List<Agendamento> agendamentos;
 }
+

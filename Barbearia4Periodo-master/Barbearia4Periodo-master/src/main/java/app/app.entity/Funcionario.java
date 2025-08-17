@@ -39,3 +39,4 @@ public class Funcionario {
     @JsonIgnoreProperties("funcionarios")
     private List<Servico> servicos;
 }
+
