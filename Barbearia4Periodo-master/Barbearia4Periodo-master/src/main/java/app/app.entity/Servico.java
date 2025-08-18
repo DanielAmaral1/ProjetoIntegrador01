@@ -30,7 +30,6 @@ public class Servico {
     @NotNull(message = "O campo preço é obrigatório")
     private BigDecimal preco;
 
-    @NotNull(message = "O campo duração é obrigatório")
     private Integer duracaoMinutos;
 
     @ManyToMany(mappedBy = "servicos")

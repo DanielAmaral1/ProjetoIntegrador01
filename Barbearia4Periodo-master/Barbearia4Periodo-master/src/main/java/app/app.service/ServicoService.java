@@ -20,7 +20,12 @@ public class ServicoService {
 
     // Create
     public Servico save(Servico servico) {
-        return servicoRepository.save(servico);
+        try {
+            return servicoRepository.save(servico);
+        } catch (Exception e) {
+            e.printStackTrace();  // Log do erro completo
+            throw new RuntimeException("Error saving Servico", e);  // Lançar uma exceção com mensagem
+        }
     }
 
     // Read
