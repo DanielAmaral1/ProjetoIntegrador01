@@ -1,6 +1,5 @@
 package app.app.service;
 
-
 import java.time.LocalDateTime;
 import app.app.entity.Cliente;
 import app.app.entity.Agendamento;
@@ -30,7 +29,7 @@ public class AgendamentoService {
     public List<Agendamento> findAll() {
         return agendamentoRepository.findAll();
     }
-
+ // Read by id
     public Agendamento findById(Long id) {
         return agendamentoRepository.findById(id)
                 .orElseThrow(() -> new EntityNotFoundException("Agendamento not found with id: " + id));
